@@ -1,0 +1,231 @@
+% Source: howtoTeX.com
+% Feel free to distribute, but leave a reference to howtoTeX.com
+% Date: April 2012
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass
+[
+a4paper,	% alle weiteren Papierformat einstellbar
+%landscape,	% Grundsätzlich im Querformat
+11pt,		% Schriftgrösse (12pt, 11pt (Standard))
+BCOR1cm,	% Bindekorrektur, bspw. 1 cm
+DIV=14,		% Satzspiegel neu berechnen
+%oneside,	% einseitiges Layout
+%twocolumn,	% zweispaltiger Satz
+%openany,	% Kapitel können auch auf linken Seiten beginnen
+%halfparskip*,	% Absatzformatierung s. scrguide 3.1
+%headsepline,	% Trennline zum Seitenkopf
+%footsepline,	% Trennline zum Seitenfuss
+%notitlepage,	% Keine eigene Titelseite
+%chapterprefix,	% Vor Kapitelüberschrift wird "Kapitel Nummer" gesetzt
+%appendixprefix,	% Anhang wird "Anhang" vor die Überschrift gesetzt 
+%normalheadings,% Überschriften etwas kleiner (smallheadings)
+%idxtotoc,	% Index im Inhaltsverzeichnis
+%listof=totoc,	% Abb.- und Tabellen Verzeichnis im Inhaltsverzeichnis
+bibliography=totoc,	% Literaturverzeichnis im Inhalt
+%leqno,		% Nummerierung von Gleichungen links
+%fleqn,		% Ausgabe von Gleichungen linksbündig
+%draft		% Überlangen Zeilen in Ausgabe gekennzeichnet
+%chapterprefix=false	% Keine "Kapitel"' am Anfang eines Kapitels
+ngerman
+]{scrartcl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \myAuthor {Constantin Lazari}
+\def \myContext {MATLAB}
+\def \mySubject {Erste Schritte}
+\def \myTitle {Eine kugelige Sache}
+\def \myDate {\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Deutsche Spezialitäten
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[babel,german=swiss]{csquotes} % Oder german=quotes
+\hyphenation{eine einer eines} % Trennung von eine, einer, eines vermeiden
+
+\usepackage{geometry}
+\geometry{verbose,a4paper,
+	tmargin=20mm,
+	bmargin=20mm,
+	lmargin=20mm,
+	rmargin=25mm,
+	headsep=5mm,
+	footskip=5mm
+}
+\setlength{\skip\footins}{1em}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+\renewcommand*{\dictumwidth}{.66\textwidth}
+
+\usepackage[singlespacing]{setspace} %singlespacing, onehalfspacing, doublespacing
+
+%% Schrift und Schriftverbesserung
+\usepackage{lmodern} %Type1-Schriftart fuer nicht-englische Texte
+\usepackage{textcomp}
+\usepackage{microtype}
+
+%% Wissenschaftliches
+\usepackage{amssymb,amsmath,amsthm,mathtools}
+\usepackage[mode=text,per-mode=symbol,exponent-product = \cdot]{siunitx}
+\sisetup{locale=DE}
+
+%% Informatik: Listings
+\usepackage{listings}
+\lstloadlanguages{Java}
+\lstset{%
+basicstyle	=\footnotesize\ttfamily,
+keywordstyle=\bfseries,
+commentstyle=\itshape,
+escapechar	=\#,
+emphstyle	=\bfseries\underline,
+tabsize		=4,
+breaklines	=true,
+}
+%% Umlaute richtig behandeln
+\lstset{
+  literate=	{ö}{{\"o}}1
+           	{ä}{{\"a}}1
+           	{ü}{{\"u}}1
+		   			{Ö}{{\"O}}1
+		  	 		{Ä}{{\"A}}1
+		   			{Ü}{{\"U}}1
+}
+
+%% Referenzen
+\usepackage{nameref}
+
+%% Graphik
+\usepackage{pgfplots}
+%\usepackage{tikz}
+%\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+\usepackage{graphicx} %[pdftex] entfernt, wenn pgf-plots verwendet wird 
+
+%% Tabellen
+\usepackage{booktabs}
+
+%% Misc Styling
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\titlehead{\myContext}
+\subject{\mySubject}
+\title{\myTitle}
+\author{\myAuthor}
+\date{\myDate}
+
+\usepackage{bookmark, hyperref} %bookmark,  
+\usepackage[final]{pdfpages}
+\pdfoutput=1
+\hypersetup{
+	pdfauthor   = {\myAuthor},
+	pdftitle    = {\myTitle},
+	pdfsubject  = {\mySubject},
+	pdfkeywords = {},
+	pdfcreator  = {Kile},		% Texnic Center oder Kile z.B.
+	pdfproducer = {pdflatex},	
+	pdfborder	= 0 0 0,
+	colorlinks  = false		% Links nicht farbig hervorheben (sieht Scheisse aus).
+} 
+
+%% Kopf- und Fusszeilen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{totpages}
+\usepackage{fancyhdr}
+\fancyhf{}
+
+%\renewcommand\chaptermark[1]{\markboth{#1}{}} 	% Disable chapter numbers
+\renewcommand\sectionmark[1]{\markboth{#1}{}} 	% Disable section numbers
+\renewcommand*{\partheadmidvskip}{~}
+
+% Defaultstyle - Head
+\fancyhead[L]{\nouppercase{\myTitle}}
+\fancyhead[C]{}
+\fancyhead[R]{\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0.5pt} % Toprule
+% Defaultstyle - Foot
+\fancyfoot[L]{\myDate}
+\fancyfoot[C]{\myAuthor} 
+\fancyfoot[R]{\thepage/\pageref{TotPages}}
+\renewcommand{\footrulewidth}{0.5pt} % Bottomrule
+
+% Style 'Plain'
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  % Plainstyle - Head
+  \fancyhead[L]{}
+  \fancyhead[C]{}
+  \fancyhead[R]{}
+  \renewcommand{\headrulewidth}{0pt} % Hide toprule
+  % Plainstyle - Foot
+  \fancyfoot[L]{\myDate}   
+  \fancyfoot[C]{\myAuthor} 
+  \fancyfoot[R]{\thepage/\pageref{TotPages}}
+  %\renewcommand{\footrulewidth}{0.5pt} % Hide bottomrule
+}
+\pagestyle{fancy}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.75em}
+\setlength{\skip\footins}{1em}
+
+%% Schusterjungen und Hurenkinder vermeiden
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+%% Eigene Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ausführlicher Verweis (siehe Abschnitt x: Titel, Seite x)
+\newcommand{\see}[2]{(siehe #1 \ref{#2}: \nameref{#2}, Seite \pageref{#2})}
+
+% Zentriertes fett geschriebener Spaltenkopf
+\newcommand{\colhead}[2]{\multicolumn{#1}{c}{\textbf{#2}}}
+
+% Datum im Iso-Format
+\newcommand{\dateIso}[3]{#3-#2-#1}
+
+% Datum im Din-Format
+\newcommand{\dateDin}[3]{#1.\,#2.~#3}
+
+% Richtige Abkürzung für zum Beispiel
+\def \zB {z.\,B. }
+
+% Richtige Abkürzung für das heisst
+\def \dH {d.\,h. } 
+
+% Richtige Abkürzung für unter anderem
+\def \ua {u.\,a. }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Eine Kugel, erstellt mit Matlab
+\end{abstract}
+
+\tableofcontents
+
+%\listoftables
+
+\listoffigures
+
+%\lstlistoflistings
+%\pagebreak
+
+\section{Matlab-Grafik}
+\begin{figure}[h!t]
+	\centering 
+	\newlength\figureheight 
+	\newlength\figurewidth 
+	\setlength\figureheight{6cm} 
+	\setlength\figurewidth{6cm} 
+	\caption{Matlab-Plot einer Kugel}
+	\input{mysphere.tikz} 
+	\label{fig:sphere} 
+	\end{figure}
+\end{document}

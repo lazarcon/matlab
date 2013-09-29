@@ -1,0 +1,14 @@
+x = -6:0.1:8;
+y = polyval([1, -5, -30, 110, 29, -105],x);
+y_0 = polyval([1/6, -1, -30/4, 110/3, 29/2, -105, 0], x);
+y_1 = polyval([1/5, -20, -90, 220, 29], x);
+plot(x, y, 'k');
+hold on;
+plot(x, y_0, 'r');
+plot(x, y_1, 'b');
+ylim([-800, 1200]);
+ylim('manual');
+title('Aufgabe 1a');
+legend('Funktion', 'Stammfunktion', 'Ableitung');
+grid on;
+hold off;
