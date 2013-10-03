@@ -1,0 +1,5 @@
+% Berechnet nach dem Algorithmus des Archimedes die Kreiszahl PI (Variante
+% 1)
+
+n = 6;
+s_last = sqrt(2 - sqrt(
