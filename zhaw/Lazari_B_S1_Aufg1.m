@@ -1,3 +1,4 @@
+clc;
 x = -6:0.1:8;
 y = polyval([1, -5, -30, 110, 29, -105],x);
 y_0 = polyval([1/6, -1, -30/4, 110/3, 29/2, -105, 0], x);
@@ -10,5 +11,15 @@ ylim([-800, 1200]);
 ylim('manual');
 title('Aufgabe 1a');
 legend('Funktion', 'Stammfunktion', 'Ableitung');
+xlabel('x');
+ylabel('y');
 grid on;
 hold off;
+
+[u,v] = meshgrid(-3:0.1:3);
+w = u .* exp(-u.^2-v.^2);
+figure();
+surf(u, v, w);
+xlabel('x');
+ylabel('y');
+zlabel('z');
