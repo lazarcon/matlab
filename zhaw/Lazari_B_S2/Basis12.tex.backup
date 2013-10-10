@@ -1,0 +1,70 @@
+\question
+Lösen Sie die folgende Aufgabe manuell auf einem Blatt Papier und scannen Sie dieses in die Datei \textit{Name\_Klasse\_S2\_Aufg1.pdf}:
+\begin{parts}
+\part
+Geben Sie für die reelle Dezimalzahl $x_0 = 118\,559.999$ die Maschinenzahl $\tilde{x_0}$ in normalisierter Gleitpunktdarstellung zur Basis 12 (Duodezimalsystem) mit Mantisselänge $n=7$ und hinreichend grossem Exponenten an (verwenden Sie dazu die Ziffern $0, 1, \dots, 9$ sowie $A  \triangleq 10, B \triangleq 11$). Wie gross ist der absolute und relative Fehler, der bei der Abbildung auf die Maschinenzahl entsteht?
+\begin{solutionordottedlines}[2cm]
+i.) Vorkommaanteil
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+\multicolumn{1}{c}{\textbf{Wert}} & \multicolumn{1}{c}{\textbf{Divident}} & \multicolumn{1}{c}{\textbf{Ganzzahl}} & \multicolumn{1}{c}{\textbf{Rest}}\\\midrule
+118\,559 & 12 & 9879 & $11 = B$\\\hline
+9\,879 & 12 & 823 & 3 \\\hline
+823 & 12 & 68 & 7 \\\hline
+68 & 12 & 5 & 8 \\\hline
+5 & 12 & 0 & 5 \\\bottomrule
+\end{tabular}
+\end{center}
+Vorkommaanteil = $5873B$
+
+ii.) Nachkommaanteil
+\begin{center}
+\begin{tabular}{rrrr}
+\multicolumn{1}{c}{\textbf{Wert}} & \multicolumn{1}{c}{\textbf{Multiplikator}} & \multicolumn{1}{c}{\textbf{Resultat}} & \multicolumn{1}{c}{\textbf{Ganzzahl}}\\\midrule
+0.999 & 12 & 11.998 & $11 = B$\\\hline
+0.988 & 12 & 11.856 & $11 = B$\\\hline
+0.856 & 12 & 10.272 & $10 = A$\\\hline
+0.272 & 12 & 3.264  & 3 \\\hline
+\dots & 12 & \dots  & \dots \\\bottomrule
+\end{tabular}
+\end{center}
+Nachkommaanteil = $BBA3$
+
+iii.) Zusammen: $x_0 = 118\,559.999_{10} \approx 5873B.BBA3_{12}$
+
+iv.) Normalisiert: $x_0 \approx 0.5873BBBA3_{12} \cdot 12^5$
+
+v.) Mit 7-stelliger Mantisse:  $\tilde{x} = 0.5873BBB_{12} \cdot 12^5$
+
+vi.) Rückkonvertiert: 
+\begin{multline*}
+5 \cdot 12^4 + 8 \cdot 12^3 + 7 \cdot 12^2 + 3 \cdot 12^1 + 11 \cdot 12^0 + \\
+11 \cdot 12^{-1} + 11 \cdot 12^{-2} = 118\,560.83\overline{3}_{10}	
+\end{multline*}
+vii.) Absoluter Fehler: $|\tilde{x} - x_0| = |118\,560.83\overline{3}_{10} - 118\,560.999_{10}| = 0.1656\overline{6}$
+viii.) Relativer Fehler: $\frac{|\tilde{x} - x_0|}{x_0} = 1.3973_{10} \cdot 10^{-6}$
+\end{solutionordottedlines}
+%%% Next subquestion
+
+\pagebreak
+\part
+Berechnen Sie nun den Funktionswert $f(x) = x^3 - 1.6665 \cdot 10^{15}$ sowohl für $x_0$ als auch für $\tilde{x_0}$. Wie gross ist der relative Fehler der Funktionswerte?
+\begin{solutionordottedlines}[2cm]
+\begin{align*}
+	f(x) = f(118\,560.999)& = 118\,559.999^3 - 1.6665 \cdot 10^{15} \approx 1.5776 \cdot 10^{12}\\
+	f(\tilde{x}) = f(118\,560.83\overline{3}) & = 118\,560.83\overline{3}^3 - 1.6665 \cdot 10^{15} \approx 1.5707 \cdot 10^{12}\\
+	\frac{|f(\tilde{x}) - f(x)|}{f(x)} = 0.004428251
+\end{align*}
+
+\end{solutionordottedlines}
+%%% Next subquestion
+
+\part
+Berechnen Sie die Konditionszahl und vergleichen Sie diese mit dem Verhältnis der relativen Fehler aus a) und b). Gab die Konditionszahl in diesem Beispiel eine realistische Abschätzung der Fehlerfortpflanzung?
+\begin{solutionordottedlines}[2cm]
+% Solution goes here
+\end{solutionordottedlines}
+%%% Next subquestion
+
+\end{parts}
