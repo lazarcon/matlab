@@ -1,0 +1,339 @@
+A = [1, 2, 3, 4; 2, 3, 4, 5; 3, 4, 1, 2; 4, 1, 2, 3];
+B = [5, 4, 3, 2; 4, 3, 2, 5; 3, 2, 5, 4; 2, 5, 4, 3];
+b = [1; 2; 3; 4];
+det A
+{Undefined function 'det' for input arguments of type 'char'.
+} 
+det(A)
+
+ans =
+
+   16.0000
+
+det(B)
+
+ans =
+
+  -224
+
+A^-1
+
+ans =
+
+   -0.5000    0.2500   -0.0000    0.2500
+   -0.2500    0.2500    0.2500   -0.2500
+   -3.0000    2.7500   -0.5000   -0.2500
+    2.7500   -2.2500    0.2500    0.2500
+
+B^-1
+
+ans =
+
+    0.2679    0.0179    0.0179   -0.2321
+    0.0179    0.0179   -0.2321    0.2679
+    0.0179   -0.2321    0.2679    0.0179
+   -0.2321    0.2679    0.0179    0.0179
+
+A * A^-1
+
+ans =
+
+    1.0000         0         0   -0.0000
+         0    1.0000         0   -0.0000
+   -0.0000    0.0000    1.0000   -0.0000
+   -0.0000    0.0000         0    1.0000
+
+A^-1 * A
+
+ans =
+
+    1.0000    0.0000    0.0000   -0.0000
+         0    1.0000    0.0000         0
+    0.0000   -0.0000    1.0000    0.0000
+   -0.0000   -0.0000   -0.0000    1.0000
+
+B * B^-1
+
+ans =
+
+    1.0000         0    0.0000   -0.0000
+    0.0000    1.0000    0.0000         0
+    0.0000    0.0000    1.0000    0.0000
+    0.0000         0    0.0000    1.0000
+
+B^-1 * B
+
+ans =
+
+    1.0000    0.0000    0.0000    0.0000
+         0    1.0000    0.0000         0
+    0.0000    0.0000    1.0000    0.0000
+   -0.0000         0    0.0000    1.0000
+
+A'
+
+ans =
+
+     1     2     3     4
+     2     3     4     1
+     3     4     1     2
+     4     5     2     3
+
+B'
+
+ans =
+
+     5     4     3     2
+     4     3     2     5
+     3     2     5     4
+     2     5     4     3
+
+A'*B
+
+ans =
+
+    30    36    38    36
+    36    30    36    38
+    38    36    30    36
+    52    50    44    50
+
+B'*A
+
+ans =
+
+    30    36    38    52
+    36    30    36    50
+    38    36    30    44
+    36    38    36    50
+
+A*B
+
+ans =
+
+    30    36    38    36
+    44    50    52    50
+    38    36    30    36
+    36    38    36    30
+
+A * B^-1
+
+ans =
+
+   -0.5714    0.4286    0.4286    0.4286
+   -0.5000    0.5000    0.5000    0.5000
+    0.4286    0.4286   -0.5714    0.4286
+    0.4286    0.4286    0.4286   -0.5714
+
+B*A
+
+ans =
+
+    30    36    38    52
+    36    30    36    50
+    38    36    30    44
+    36    38    36    50
+
+B*A^-1
+
+ans =
+
+   -7.0000    6.0000   -0.0000   -0.0000
+    5.0000   -4.0000    1.0000    1.0000
+   -6.0000    6.0000   -1.0000   -0.0000
+   -6.0000    6.0000   -0.0000   -1.0000
+
+A(4,1:4)*B(1:4;2)+(B(1:4,3)'*b)
+ A(4,1:4)*B(1:4;2)+(B(1:4,3)'*b)
+               |
+{Error: Unbalanced or unexpected parenthesis or bracket.
+} 
+A(4,1:4)*B(1:4;2)+B(1:4,3)'*b
+ A(4,1:4)*B(1:4;2)+B(1:4,3)'*b
+               |
+{Error: Unbalanced or unexpected parenthesis or bracket.
+} 
+A(4,1:4)*B(1:4,2)+B(1:4,3)'*b
+
+ans =
+
+    76
+
+doc solve
+solve(A*x = b, x)
+ solve(A*x = b, x)
+           |
+{Error: The expression to the left of the equals sign is not a valid target for an
+assignment.
+} 
+solve(A*x - b = 0, x)
+ solve(A*x - b = 0, x)
+               |
+{Error: The expression to the left of the equals sign is not a valid target for an
+assignment.
+} 
+solve(A*x - b == 0, x)
+{Undefined function or variable 'x'.
+} 
+syms x
+solve(A*x - b == 0)
+{Error using <a href="matlab:helpUtils.errorDocCallback('mupadmex')" style="font-weight:bold">mupadmex</a>
+Error in MuPAD command: Array sizes must match.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('sym/privBinaryOp', '/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m', 1693)" style="font-weight:bold">sym/privBinaryOp</a> (<a href="matlab: opentoline('/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m',1693,0)">line 1693</a>)
+            Csym = mupadmex(op,args{1}.s, args{2}.s, varargin{:});
+
+Error in <a href="matlab:helpUtils.errorDocCallback('sym/minus', '/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/minus.m', 7)" style="font-weight:bold">sym/minus</a> (<a href="matlab: opentoline('/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/minus.m',7,0)">line 7</a>)
+X = privBinaryOp(A, B, 'symobj::zip', '_subtract');
+} 
+solve(B * y == b)
+{Undefined function or variable 'y'.
+} 
+syms y
+solve(B * y == b)
+{Error using <a href="matlab:helpUtils.errorDocCallback('mupadmex')" style="font-weight:bold">mupadmex</a>
+Error in MuPAD command: Array sizes must match.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('sym/mupadmexnout', '/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m', 1733)" style="font-weight:bold">sym/mupadmexnout</a> (<a href="matlab: opentoline('/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m',1733,0)">line 1733</a>)
+        out = mupadmex(fcn,args{:});
+
+Error in <a href="matlab:helpUtils.errorDocCallback('sym/privComparison', '/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m', 1705)" style="font-weight:bold">sym/privComparison</a> (<a href="matlab: opentoline('/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m',1705,0)">line 1705</a>)
+            [Xsym, indets] = mupadmexnout('symobj::eq', args{1}, args{2}.s, ...
+
+Error in <a href="matlab:helpUtils.errorDocCallback('sym/eq', '/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m', 605)" style="font-weight:bold">sym/eq</a> (<a href="matlab: opentoline('/home/cola/MATLAB/R2013a/toolbox/symbolic/symbolic/@sym/sym.m',605,0)">line 605</a>)
+            X = privComparison(A, B, '_equal', 'FALSE', 'FALSE');
+} 
+B
+
+B =
+
+     5     4     3     2
+     4     3     2     5
+     3     2     5     4
+     2     5     4     3
+
+b
+
+b =
+
+     1
+     2
+     3
+     4
+
+"Offenbar hab ich ein Problem beim lösen von Gleichungen - steht aber auch nicht im Skript."
+ "Offenbar hab ich ein Problem beim lösen von Gleichungen - steht aber auch nicht im Skript."
+ |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+C = rand(10, 10);
+D = C .^2;
+D
+
+D =
+
+  Columns 1 through 8
+
+    0.6638    0.0248    0.4300    0.4985    0.1925    0.0762    0.5644    0.7068
+    0.8205    0.9421    0.0013    0.0010    0.1456    0.4620    0.0651    0.0647
+    0.0161    0.9162    0.7210    0.0767    0.5860    0.4292    0.2560    0.6631
+    0.8343    0.2356    0.8723    0.0021    0.6323    0.0264    0.4887    0.0593
+    0.3999    0.6404    0.4607    0.0094    0.0349    0.0142    0.7937    0.8635
+    0.0095    0.0201    0.5742    0.6781    0.2399    0.2484    0.9202    0.1225
+    0.0776    0.1779    0.5522    0.4828    0.1985    0.9211    0.2994    0.0386
+    0.2991    0.8386    0.1538    0.1006    0.4177    0.1159    0.0192    0.0630
+    0.9168    0.6276    0.4297    0.9029    0.5032    0.3425    0.0223    0.3795
+    0.9310    0.9206    0.0293    0.0012    0.5696    0.0501    0.0663    0.2240
+
+  Columns 9 through 10
+
+    0.1237    0.0058
+    0.6903    0.0029
+    0.3425    0.2817
+    0.3022    0.6071
+    0.8412    0.8724
+    0.0817    0.0169
+    0.5734    0.3236
+    0.5681    0.2203
+    0.1447    0.0001
+    0.3224    0.1137
+
+max(D)
+
+ans =
+
+  Columns 1 through 8
+
+    0.9310    0.9421    0.8723    0.9029    0.6323    0.9211    0.9202    0.8635
+
+  Columns 9 through 10
+
+    0.8412    0.8724
+
+min(D)
+
+ans =
+
+  Columns 1 through 8
+
+    0.0095    0.0201    0.0013    0.0010    0.0349    0.0142    0.0192    0.0386
+
+  Columns 9 through 10
+
+    0.0817    0.0001
+
+median(D)
+
+ans =
+
+  Columns 1 through 8
+
+    0.5318    0.6340    0.4453    0.0886    0.3288    0.1821    0.2777    0.1732
+
+  Columns 9 through 10
+
+    0.3325    0.1670
+
+help max
+ <strong>max</strong>    Largest component.
+    For vectors, <strong>max</strong>(X) is the largest element in X. For matrices,
+    <strong>max</strong>(X) is a row vector containing the maximum element from each
+    column. For N-D arrays, <strong>max</strong>(X) operates along the first
+    non-singleton dimension.
+ 
+    [Y,I] = <strong>max</strong>(X) returns the indices of the maximum values in vector I.
+    If the values along the first non-singleton dimension contain more
+    than one maximal element, the index of the first one is returned.
+ 
+    <strong>max</strong>(X,Y) returns an array the same size as X and Y with the
+    largest elements taken from X or Y. Either one can be a scalar.
+ 
+    [Y,I] = <strong>max</strong>(X,[],DIM) operates along the dimension DIM. 
+ 
+    When X is complex, the maximum is computed using the magnitude
+    <strong>max</strong>(ABS(X)). In the case of equal magnitude elements, then the phase
+    angle <strong>max</strong>(ANGLE(X)) is used.
+ 
+    NaN's are ignored when computing the maximum. When all elements in X
+    are NaN's, then the first one is returned as the maximum.
+ 
+    Example: If X = [2 8 4   then max(X,[],1) is [7 8 9],
+                     7 3 9]
+ 
+        max(X,[],2) is [8    and max(X,5) is [5 8 5
+                        9],                   7 5 9].
+ 
+    See also <a href="matlab:help min">min</a>, <a href="matlab:help median">median</a>, <a href="matlab:help mean">mean</a>, <a href="matlab:help sort">sort</a>.
+
+    Overloaded methods:
+       <a href="matlab:help ordinal/max">ordinal/max</a>
+       <a href="matlab:help timeseries/max">timeseries/max</a>
+
+    Reference page in Help browser
+       <a href="matlab:doc max">doc max</a>
+
+max(max(D))
+
+ans =
+
+    0.9421
+
