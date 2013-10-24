@@ -1,0 +1,129 @@
+\documentclass[12pt, a4paper, answers]{exam} % Lösungen
+%\documentclass[12pt, addpoints, a4paper]{exam} % Ohne Lösungen
+\newcommand{\myAuthor}{Constantin Lazari}
+\newcommand{\myTitle}{Übungen Numerik}
+\newcommand{\mySubject}{Numerik I (2013)}
+\newcommand{\myNumber}{3}
+
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx} 
+\usepackage{microtype}
+\usepackage[pdfborder={0 0 0}, plainpages=false, pdfpagelabels]{hyperref} 
+\usepackage[ngerman]{babel}
+\usepackage[babel]{csquotes}
+\usepackage{tabularx} 
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{amsmath,amssymb,amsthm}
+
+\usepackage{lmodern} %Type1-Schriftart fuer nicht-englische Texte
+\hyphenation{eine einer eines} % Trennung von eine, einer, eines vermeiden
+\usepackage{microtype}
+
+\usepackage{color}
+\usepackage{stmaryrd}
+\usepackage{booktabs}
+
+
+%% Listings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{verbatim}
+\usepackage{listings}
+\lstloadlanguages{[LaTeX]TeX}
+{\lstset{%
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\slshape\color{green!50!black},
+  keywordstyle=\bfseries\color{blue!50!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  escapechar=\#,
+  emphstyle=\color{red}}
+}
+{
+  \lstset{%
+    basicstyle=\ttfamily,
+    keywordstyle=\bfseries,
+    commentstyle=\itshape,
+    escapechar=\#,
+    emphstyle=\bfseries\color{red}
+  }
+}
+
+\hypersetup{
+	pdfauthor   = {\myAuthor},
+	pdftitle    = {\myTitle},
+	pdfsubject  = {\mySubject},
+	pdfkeywords = {},
+	pdfcreator  = {Kile},
+	pdfproducer = {pdflatex},
+	colorlinks 	= false
+} 
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.75em}
+
+%% Exam Settings
+\pagestyle{headandfoot}
+%\firstpageheader{Benutzer/innen im Umgang mit Informatikmitteln instruieren}{}{Lernkontrolle 1}
+\firstpageheader{\mySubject}{}{Übung \myNumber}
+\firstpageheadrule
+
+%\runningheader{Benutzer/innen im Umgang mit Informatikmitteln instruieren}{}{Lernkontrolle 1}
+\runningheader{\mySubject}{}{
+\ifprintanswers
+  Lösung Übung \myNumber
+\else
+  Übung \myNumber
+\fi
+}
+\runningheadrule
+
+\firstpagefooter{}{Seite \thepage\ von \numpages}{}
+\firstpagefootrule
+
+\runningfooter{}{Seite \thepage\ von \numpages}{}
+\runningfootrule
+
+\pointsinrightmargin
+\pointpoints{Punkt}{Punkte}
+\bonuspointpoints{Bonuspunkt}{Bonuspunkte}
+\renewcommand{\solutiontitle}{\noindent\textbf{Lösung:}\par\noindent}
+
+\CorrectChoiceEmphasis{\bfseries}
+\renewcommand\choicelabel{$\boxempty$}
+
+\begin{document}
+	\begin{tabularx}{\textwidth}{Xr}
+	\myAuthor & \today\\
+	\end{tabularx}
+  %% Lernkontrolle einbinden
+	\begin{questions}
+\question
+Ist das Potenzieren ($f(x) = x^n, n \in \mathbb{N}$) bzw. das Wurzelziehen ($f(x) = \sqrt[n]{x}, n \in \mathbb{N}$)
+einer reelen Zahl $x$ gut oder schlecht konditioniert? Begründen Sie! Was hat das für Auswirkungen auf die Auswertung von Polynomen für grosse $n$?
+\begin{parts}
+\part
+Potenzieren
+\begin{solutionordottedlines}[2cm]
+\begin{align*}
+K &= \frac{f(x)}{f'(x)} \cdot x\\
+  &= \frac{x^n}{n \cdot x^{n-1}} \cdot x = \frac{x^n}{n \cdot x^n \cdot x^{-1}} \cdot x = \frac{x^2}{n}
+\end{align*}
+Je grösser $n$, desto kleiner wird $K$. Somit ist es gut konditioniert, und grössere Polynome lassen sich besser auswerten als kleine. 
+\end{solutionordottedlines}
+%%% Next subquestion
+
+\part
+Wurzelziehen
+\begin{solutionordottedlines}[2cm]
+\begin{align*}
+K &= \frac{f(x)}{f'(x)} \cdot x\\
+  &= \frac{x^{1/n}}{1/n \cdot x^{1/n -1}} \cdot x = \frac{x^{1/2}}{1/n \cdot x^{1/n} \cdot x^{-1}} \cdot x = n \cdot x^2
+\end{align*}
+Je grösser $n$, desto grösser wird $K$. Somit ist es schlecht konditioniert, und grössere Wurzel lassen sich nur ungenau berechnen.
+\end{solutionordottedlines}
+%%% Next subquestion
+
+\end{parts}
+	\end{questions}
+\end{document}
